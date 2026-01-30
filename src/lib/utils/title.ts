@@ -1,4 +1,4 @@
-// src/lib/utils.ts
+// src/lib/utils/title.ts
 import { browser } from '$app/environment'
 
 export function setPageTitle(title: string): void {

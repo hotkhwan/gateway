@@ -1,12 +1,16 @@
+<!-- src/lib/components/app/AppThemePanel.svelte -->
 <script lang="ts">
   import { onMount } from 'svelte'
-  // import Card from '$lib/components/bootstrap/Card.svelte'
-  // import CardBody from '$lib/components/bootstrap/CardBody.svelte'
-  import { appVariables, generateVariables } from '$lib/stores/appVariables'
+  import Card from '$lib/components/bootstrap/Card.svelte'
+  import CardBody from '$lib/components/bootstrap/CardBody.svelte'
 
-  // -----------------------------
-  // Types
-  // -----------------------------
+  import { appVariables, generateVariables } from '$lib/stores/appVariables'
+  import { appOptions } from '$lib/stores/appOptions'
+  import { base } from '$app/paths'
+  import { createAssetHelper } from '$lib/utils'
+
+  const asset = createAssetHelper(base)
+
   type ThemeMode = 'dark' | 'light'
   type DirectionMode = 'ltr' | 'rtl'
 
@@ -18,7 +22,7 @@
 
   type DirectionItem = {
     name: string
-    icon: string
+    icon: `bi bi-${string}`
     value: DirectionMode
   }
 
@@ -34,26 +38,19 @@
     coverClass: string
   }
 
-  // -----------------------------
-  // State
-  // -----------------------------
-  let active: 'true' | 'false' = 'false'
   let activeMode: ThemeMode = 'dark'
   let activeDirection: DirectionMode | '' = ''
   let activeTheme = 'theme-teal'
   let activeCover = 'bg-cover-1'
 
-  // -----------------------------
-  // Lists
-  // -----------------------------
   const modeList: ModeItem[] = [
-    { name: 'Dark', img: '/img/mode/dark.jpg', value: 'dark' },
-    { name: 'Light', img: '/img/mode/light.jpg', value: 'light' }
+    { name: 'Dark', img: asset('/img/mode/dark.jpg'), value: 'dark' },
+    { name: 'Light', img: asset('/img/mode/light.jpg'), value: 'light' }
   ]
 
   const directionList: DirectionItem[] = [
-    { name: 'LTR', icon: 'bi-text-left', value: 'ltr' },
-    { name: 'RTL', icon: 'bi-text-right', value: 'rtl' }
+    { name: 'LTR', icon: 'bi bi-text-left', value: 'ltr' },
+    { name: 'RTL', icon: 'bi bi-text-right', value: 'rtl' }
   ]
 
   const themeList: ThemeItem[] = [
@@ -74,57 +71,56 @@
   const coverList: CoverItem[] = [
     {
       name: 'Default',
-      coverThumbImage: '/img/cover/cover-thumb-1.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-1.jpg'),
       coverClass: 'bg-cover-1'
     },
     {
       name: 'Cover 2',
-      coverThumbImage: '/img/cover/cover-thumb-2.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-2.jpg'),
       coverClass: 'bg-cover-2'
     },
     {
       name: 'Cover 3',
-      coverThumbImage: '/img/cover/cover-thumb-3.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-3.jpg'),
       coverClass: 'bg-cover-3'
     },
     {
       name: 'Cover 4',
-      coverThumbImage: '/img/cover/cover-thumb-4.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-4.jpg'),
       coverClass: 'bg-cover-4'
     },
     {
       name: 'Cover 5',
-      coverThumbImage: '/img/cover/cover-thumb-5.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-5.jpg'),
       coverClass: 'bg-cover-5'
     },
     {
       name: 'Cover 6',
-      coverThumbImage: '/img/cover/cover-thumb-6.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-6.jpg'),
       coverClass: 'bg-cover-6'
     },
     {
       name: 'Cover 7',
-      coverThumbImage: '/img/cover/cover-thumb-7.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-7.jpg'),
       coverClass: 'bg-cover-7'
     },
     {
       name: 'Cover 8',
-      coverThumbImage: '/img/cover/cover-thumb-8.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-8.jpg'),
       coverClass: 'bg-cover-8'
     },
     {
       name: 'Cover 9',
-      coverThumbImage: '/img/cover/cover-thumb-9.jpg',
+      coverThumbImage: asset('/img/cover/cover-thumb-9.jpg'),
       coverClass: 'bg-cover-9'
     }
   ]
 
-  // -----------------------------
-  // Actions
-  // -----------------------------
-  function themePanelToggler() {
-    active = active === 'true' ? 'false' : 'true'
-    localStorage.setItem('theme-panel', active)
+  function togglePanel() {
+    appOptions.update((o) => ({
+      ...o,
+      appThemePanelToggled: !o.appThemePanelToggled
+    }))
   }
 
   function themeModeToggler(mode: ThemeMode) {
@@ -139,9 +135,7 @@
     localStorage.setItem('theme-color', themeClass)
 
     document.body.classList.forEach((cls) => {
-      if (cls.startsWith('theme-')) {
-        document.body.classList.remove(cls)
-      }
+      if (cls.startsWith('theme-')) document.body.classList.remove(cls)
     })
 
     document.body.classList.add(themeClass)
@@ -152,14 +146,12 @@
     activeCover = coverClass
     localStorage.setItem('theme-cover', coverClass)
 
-    const htmlElm = document.documentElement
-    htmlElm.classList.forEach((cls) => {
-      if (cls.startsWith('bg-cover-')) {
-        htmlElm.classList.remove(cls)
-      }
+    document.documentElement.classList.forEach((cls) => {
+      if (cls.startsWith('bg-cover-'))
+        document.documentElement.classList.remove(cls)
     })
 
-    htmlElm.classList.add(coverClass)
+    document.documentElement.classList.add(coverClass)
   }
 
   function themeDirectionToggler(direction: DirectionMode | '') {
@@ -169,19 +161,13 @@
     $appVariables = generateVariables()
   }
 
-  // -----------------------------
-  // Mount
-  // -----------------------------
   onMount(async () => {
     const bootstrap = await import('bootstrap')
 
     document
       .querySelectorAll<HTMLElement>('[data-bs-toggle="tooltip"]')
-      .forEach((el) => {
-        new bootstrap.Tooltip(el)
-      })
+      .forEach((el) => new bootstrap.Tooltip(el))
 
-    active = (localStorage.getItem('theme-panel') as 'true' | 'false') ?? active
     activeMode = (localStorage.getItem('theme-mode') as ThemeMode) ?? activeMode
     activeDirection =
       (localStorage.getItem('theme-direction') as DirectionMode) ??
@@ -195,3 +181,128 @@
     themeCoverToggler(activeCover)
   })
 </script>
+
+<!-- BEGIN theme-panel -->
+<div class="app-theme-panel" class:active={$appOptions.appThemePanelToggled}>
+  <div class="app-theme-panel-container">
+    <a
+      href="#/"
+      aria-label="Theme panel toggle"
+      class="app-theme-toggle-btn"
+      on:click|preventDefault={togglePanel}
+    >
+      <i class="bi bi-sliders"></i>
+    </a>
+
+    <div class="app-theme-panel-content">
+      <div class="small fw-bold text-inverse mb-1">Display Mode</div>
+      <Card class="mb-3">
+        <CardBody class="p-2">
+          <div class="row gx-2">
+            {#each modeList as mode}
+              <div class="col-6">
+                <a
+                  href="#/"
+                  class="app-theme-mode-link"
+                  class:active={mode.value === activeMode}
+                  on:click|preventDefault={() => themeModeToggler(mode.value)}
+                >
+                  <div class="img">
+                    <img
+                      src={mode.img}
+                      height="76"
+                      width="76"
+                      alt={mode.name}
+                    />
+                  </div>
+                  <div class="text">{mode.name}</div>
+                </a>
+              </div>
+            {/each}
+          </div>
+        </CardBody>
+      </Card>
+
+      <div class="small fw-bold text-inverse mb-1">Direction Mode</div>
+      <Card class="mb-3">
+        <CardBody class="p-2">
+          <div class="row gx-2">
+            {#each directionList as direction}
+              <div class="col-6">
+                <a
+                  href="#/"
+                  class="btn btn-sm btn-outline-light w-100"
+                  class:active={direction.value === activeDirection}
+                  on:click|preventDefault={() =>
+                    themeDirectionToggler(direction.value)}
+                >
+                  <i class={direction.icon}></i>
+                  {direction.name}
+                </a>
+              </div>
+            {/each}
+          </div>
+        </CardBody>
+      </Card>
+      <!-- Theme Color -->
+      <div class="small fw-bold text-inverse mb-1">Theme Color</div>
+      <Card class="mb-3">
+        <CardBody class="p-2">
+          <div class="app-theme-list">
+            {#each themeList as theme}
+              <div
+                class="app-theme-list-item"
+                class:active={theme.themeClass === activeTheme}
+              >
+                <a
+                  href="#/"
+                  aria-label="Theme Color"
+                  class="app-theme-list-link {theme.bgClass}"
+                  on:click|preventDefault={() =>
+                    themeColorToggler(theme.themeClass)}
+                  data-bs-toggle="tooltip"
+                  data-bs-trigger="hover"
+                  data-bs-container="body"
+                  data-bs-title={theme.name}
+                >
+                  &nbsp;
+                </a>
+              </div>
+            {/each}
+          </div>
+        </CardBody>
+      </Card>
+
+      <!-- Theme Cover -->
+      <div class="small fw-bold text-inverse mb-1">Theme Cover</div>
+      <Card class="mb-3">
+        <CardBody class="p-2">
+          <div class="app-theme-cover">
+            {#each coverList as cover}
+              <div
+                class="app-theme-cover-item"
+                class:active={cover.coverClass === activeCover}
+              >
+                <a
+                  href="#/"
+                  aria-label="Theme Cover"
+                  class="app-theme-cover-link"
+                  style="background-image: url({cover.coverThumbImage});"
+                  on:click|preventDefault={() =>
+                    themeCoverToggler(cover.coverClass)}
+                  data-bs-toggle="tooltip"
+                  data-bs-trigger="hover"
+                  data-bs-container="body"
+                  data-bs-title={cover.name}
+                >
+                  &nbsp;
+                </a>
+              </div>
+            {/each}
+          </div>
+        </CardBody>
+      </Card>
+    </div>
+  </div>
+</div>
+<!-- END theme-panel -->

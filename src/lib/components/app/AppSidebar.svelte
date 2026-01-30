@@ -4,24 +4,7 @@
   import { appSidebarMenus } from '$lib/stores/appSidebarMenus'
   import { onMount } from 'svelte'
   import { page, navigating } from '$app/stores'
-
-  type SidebarChild = {
-    url: string
-    text: string
-    action?: string
-    children?: SidebarChild[]
-  }
-
-  type SidebarMenu = {
-    text?: string
-    url?: string
-    icon?: string
-    action?: string
-    highlight?: boolean
-    is_header?: boolean
-    is_divider?: boolean
-    children?: SidebarChild[]
-  }
+  import type { SidebarChild, SidebarMenu } from '$lib/types/navigation'
 
   function mobileToggler() {
     $appOptions.appSidebarMobileToggled = !$appOptions.appSidebarMobileToggled
@@ -34,7 +17,7 @@
   $: if ($navigating) hideMobileSidebar()
 
   function hasActiveChild(children?: SidebarChild[]): boolean {
-    if (!children) return false
+    if (!children?.length) return false
     return children.some((c) => c.url === $page.url.pathname)
   }
 
@@ -90,24 +73,24 @@
   <PerfectScrollbar class="h-100">
     <div class="app-sidebar-content">
       <div class="menu">
-        {#each $appSidebarMenus as menu (menu.text)}
-          {#if menu.is_header}
+        {#each $appSidebarMenus as menu (menu.id)}
+          {#if menu.kind === 'header'}
             <div class="menu-header">{menu.text}</div>
-          {:else if menu.is_divider}
+          {:else if menu.kind === 'divider'}
             <div class="menu-divider"></div>
           {:else}
             <div
               class="menu-item"
-              class:has-sub={!!menu.children}
+              class:has-sub={!!menu.children?.length}
               class:active={menu.url === $page.url.pathname ||
                 hasActiveChild(menu.children)}
             >
               <a href={menu.url ?? '#'} class="menu-link">
                 {#if menu.icon}
-                  <span class="menu-icon">
+                  <span class="menu-icon position-relative">
                     <i class={menu.icon}></i>
 
-                    {#if 'highlight' in menu && menu.highlight}
+                    {#if menu.highlight === true}
                       <span
                         class="w-5px h-5px rounded-3 bg-theme position-absolute top-0 end-0 mt-3px me-3px"
                       ></span>
@@ -117,21 +100,21 @@
 
                 <span class="menu-text">{menu.text}</span>
 
-                {#if menu.children}
+                {#if menu.children?.length}
                   <span class="menu-caret">
                     <b class="caret"></b>
                   </span>
                 {/if}
               </a>
 
-              {#if menu.children}
+              {#if menu.children?.length}
                 <div class="menu-submenu">
-                  {#each menu.children as child (child.text)}
+                  {#each menu.children as child (child.id)}
                     <div
                       class="menu-item"
                       class:active={child.url === $page.url.pathname}
                     >
-                      <a href={child.url} class="menu-link">
+                      <a href={child.url ?? '#'} class="menu-link">
                         <span class="menu-text">{child.text}</span>
                       </a>
                     </div>

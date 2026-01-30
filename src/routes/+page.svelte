@@ -1,12 +1,15 @@
 <!-- src/routes/+page.svelte -->
-<script>
+<script lang="ts">
   import { onMount, onDestroy } from 'svelte'
   import Icon from '@iconify/svelte'
+  // @ts-ignore
+  import { base } from '$app/paths'
+  import { createAssetHelper } from '$lib/utils'
 
-  import { setPageTitle } from '$lib/utils'
+  const asset = createAssetHelper(base)
+
+  import { setPageTitle } from '$lib/utils/title'
   import { appOptions } from '$lib/stores/appOptions'
-
-  let codeArray = []
 
   onMount(async () => {
     await import('lity')
@@ -20,8 +23,8 @@
 
   onDestroy(() => {
     $appOptions.appContentClass = ''
-    $appOptions.appSidebarHide = false
-    $appOptions.appHeaderHide = false
+    $appOptions.appSidebarHide = true
+    $appOptions.appHeaderHide = true
   })
 </script>
 
@@ -187,14 +190,14 @@
       <img
         class="w-100 d-block shadow-lg"
         alt="HUD"
-        src="/img/landing/mockup-1.jpg"
+        src={asset('/img/landing/mockup-1.jpg')}
       />
     </div>
   </div>
   <!-- END container -->
   <div
     class="position-absolute bg-size-cover bg-position-center d-none2 bg-no-repeat top-0 start-0 w-100 h-100"
-    style="background-image: url(/img/landing/cover.jpg);"
+    style="background-image: url({asset('/img/landing/cover.jpg')});"
   ></div>
   <div
     class="position-absolute top-0 start-0 d-none2 w-100 h-100 opacity-95"
@@ -202,7 +205,9 @@
   ></div>
   <div
     class="position-absolute top-0 start-0 d-none2 w-100 h-100 opacity-95"
-    style="background-image: url(/img/pattern/pattern-dark.png); background-size: var(--bs-body-bg-image-size);"
+    style="background-image: url({asset(
+      '/img/pattern/pattern-dark.png'
+    )}); background-size: var(--bs-body-bg-image-size);"
   ></div>
 </div>
 <!-- END #home -->
@@ -353,13 +358,13 @@
     <div class="row g-3 g-lg-5">
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-1.jpg"
+          href={asset('/img/landing/mockup-1.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-1-thumb.jpg"
+            src={asset('/img/landing/mockup-1-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -368,13 +373,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-2.jpg"
+          href={asset('/img/landing/mockup-2.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-2-thumb.jpg"
+            src={asset('/img/landing/mockup-2-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -383,13 +388,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-3.jpg"
+          href={asset('/img/landing/mockup-3.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-3-thumb.jpg"
+            src={asset('/img/landing/mockup-3-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -398,13 +403,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-4.jpg"
+          href={asset('/img/landing/mockup-4.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-4-thumb.jpg"
+            src={asset('/img/landing/mockup-4-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -413,13 +418,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-5.jpg"
+          href={asset('/img/landing/mockup-5.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-5-thumb.jpg"
+            src={asset('/img/landing/mockup-5-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -428,13 +433,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-6.jpg"
+          href={asset('/img/landing/mockup-6.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-6-thumb.jpg"
+            src={asset('/img/landing/mockup-6-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -443,13 +448,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-7.jpg"
+          href={asset('/img/landing/mockup-7.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-7-thumb.jpg"
+            src={asset('/img/landing/mockup-7-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -458,13 +463,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-8.jpg"
+          href={asset('/img/landing/mockup-8.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-8-thumb.jpg"
+            src={asset('/img/landing/mockup-8-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -479,7 +484,7 @@
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-9-thumb.jpg"
+            src={asset('/img/landing/mockup-9-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -488,13 +493,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-10.jpg"
+          href={asset('/img/landing/mockup-10.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-10-thumb.jpg"
+            src={asset('/img/landing/mockup-10-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -503,13 +508,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-11.jpg"
+          href={asset('/img/landing/mockup-11.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-11-thumb.jpg"
+            src={asset('/img/landing/mockup-11-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -518,13 +523,13 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <a
-          href="/img/landing/mockup-12.jpg"
+          href={asset('/img/landing/mockup-12.jpg')}
           aria-label="link"
           data-lity
           data-sveltekit-reload
           class="shadow d-block"
           ><img
-            src="/img/landing/mockup-12-thumb.jpg"
+            src={asset('/img/landing/mockup-12-thumb.jpg')}
             alt=""
             class="mw-100"
           /></a
@@ -937,7 +942,7 @@
               </div>
             </div>
             <a
-              href="/dashboardß"
+              href="/dashboard"
               aria-label="link"
               class="btn btn-theme btn-lg w-100 text-black font-monospace"
               >Get Started <i class="fa fa-arrow-right"></i></a
@@ -1112,7 +1117,7 @@
         <div class="card p-4 h-100">
           <div class="d-flex align-items-center mb-3">
             <img
-              src="/img/user/user.jpg"
+              src={asset('/img/user/user.jpg')}
               class="rounded-circle me-3 w-50px"
               alt="Client 1"
             />
@@ -1150,7 +1155,7 @@
         <div class="card p-4 h-100">
           <div class="d-flex align-items-center mb-3">
             <img
-              src="/img/user/user-7.jpg"
+              src={asset('/img/user/user-7.jpg')}
               class="rounded-circle me-3 w-50px"
               alt="Client 1"
             />
@@ -1188,7 +1193,7 @@
         <div class="card p-4 h-100">
           <div class="d-flex align-items-center mb-3">
             <img
-              src="/img/user/user-10.jpg"
+              src={asset('/img/user/user-10.jpg')}
               class="rounded-circle me-3 w-50px"
               alt="Client 1"
             />
@@ -1227,7 +1232,7 @@
         <div class="card p-4 h-100">
           <div class="d-flex align-items-center mb-3">
             <img
-              src="/img/user/user-8.jpg"
+              src={asset('/img/user/user-8.jpg')}
               class="rounded-circle me-3 w-50px"
               alt="Client 1"
             />
@@ -1265,7 +1270,7 @@
         <div class="card p-4 h-100">
           <div class="d-flex align-items-center mb-3">
             <img
-              src="/img/user/user.jpg"
+              src={asset('/img/user/user.jpg')}
               class="rounded-circle me-3 w-50px"
               alt="Client 1"
             />
@@ -1325,7 +1330,7 @@
         <div class="card d-flex flex-column h-100 mb-5 mb-lg-0">
           <div class="card-body">
             <img
-              src="/img/landing/blog-1.jpg"
+              src={asset('/img/landing/blog-1.jpg')}
               alt=""
               class="object-fit-cover h-200px w-100 d-block"
             />
@@ -1356,7 +1361,7 @@
         <div class="card d-flex flex-column h-100 mb-5 mb-lg-0">
           <div class="card-body">
             <img
-              src="/img/landing/blog-2.jpg"
+              src={asset('/img/landing/blog-2.jpg')}
               alt=""
               class="object-fit-cover h-200px w-100 d-block"
             />
@@ -1387,7 +1392,7 @@
         <div class="card d-flex flex-column h-100 mb-5 mb-lg-0">
           <div class="card-body">
             <img
-              src="/img/landing/blog-3.jpg"
+              src={asset('/img/landing/blog-3.jpg')}
               alt=""
               class="object-fit-cover h-200px w-100 d-block"
             />
@@ -1418,7 +1423,7 @@
         <div class="card d-flex flex-column h-100 mb-5 mb-lg-0">
           <div class="card-body">
             <img
-              src="/img/landing/blog-4.jpg"
+              src={asset('/img/landing/blog-4.jpg')}
               alt=""
               class="object-fit-cover h-200px w-100 d-block"
             />

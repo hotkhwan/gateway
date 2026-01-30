@@ -1,4 +1,4 @@
-// src/lib/types/topNav.ts
+// src/lib/types/navigation/topNav.ts
 export interface TopNavMenu {
     url?: string
     text: string

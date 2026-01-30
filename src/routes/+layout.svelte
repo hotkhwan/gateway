@@ -1,14 +1,15 @@
-<script>
-  import '/src/scss/styles.scss'
+<!-- src/routes/+layout.svelte -->
+<script lang="ts">
+  import '../scss/styles.scss'
   import 'bootstrap-icons/font/bootstrap-icons.min.css'
   import '@fortawesome/fontawesome-free/css/all.min.css'
   import 'perfect-scrollbar/css/perfect-scrollbar.css'
 
-  import AppHeader from '../lib/components/app/AppHeader.svelte'
-  import AppSidebar from '../lib/components/app/AppSidebar.svelte'
-  import AppTopNav from '../lib/components/app/AppTopNav.svelte'
-  import AppFooter from '../lib/components/app/AppFooter.svelte'
-  import AppThemePanel from '../lib/components/app/AppThemePanel.svelte'
+  import AppHeader from '$lib/components/app/AppHeader.svelte'
+  import AppSidebar from '$lib/components/app/AppSidebar.svelte'
+  import AppTopNav from '$lib/components/app/AppTopNav.svelte'
+  import AppFooter from '$lib/components/app/AppFooter.svelte'
+  import AppThemePanel from '$lib/components/app/AppThemePanel.svelte'
   import { appOptions } from '$lib/stores/appOptions.js'
 </script>
 

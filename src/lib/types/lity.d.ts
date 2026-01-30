@@ -1,5 +1,6 @@
+// src/lib/types/lity.d.ts
 declare module 'lity' {
-    const lity: any
+    const lity: (...args: any[]) => any
     export default lity
 }
 

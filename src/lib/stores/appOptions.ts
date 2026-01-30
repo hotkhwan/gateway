@@ -1,7 +1,26 @@
-import { writable } from 'svelte/store';
+// src/lib/stores/appOptions.ts
+import { writable } from 'svelte/store'
 
-// Initial app options
-const initialOptions = {
+export type AppOptions = {
+	appBoxedLayout: boolean
+	appSidebarToggled: boolean
+	appSidebarCollapsed: boolean
+	appSidebarMobileToggled: boolean
+	appSidebarMobileClosed: boolean
+	appSidebarHide: boolean
+	appHeaderToggled: boolean
+	appHeaderSearchToggled: boolean
+	appHeaderHide: boolean
+	appContentFullHeight: boolean
+	appContentFullWidth: boolean
+	appContentClass: string
+	appTopNav: boolean
+	appFooter: boolean
+	appFooterFixed: boolean
+	appThemePanelToggled: boolean
+}
+
+export const appOptions = writable<AppOptions>({
 	appBoxedLayout: false,
 	appSidebarToggled: false,
 	appSidebarCollapsed: false,
@@ -18,7 +37,4 @@ const initialOptions = {
 	appFooter: false,
 	appFooterFixed: false,
 	appThemePanelToggled: false
-};
-
-// Create a writable store with the initial options
-export const appOptions = writable(initialOptions);
+})

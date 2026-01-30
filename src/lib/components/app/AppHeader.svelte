@@ -1,10 +1,14 @@
 <!-- src/lib/components/app/AppHeader.svelte -->
 <script>
   import { appOptions } from '$lib/stores/appOptions'
+  import { base } from '$app/paths'
+  import { createAssetHelper } from '$lib/utils'
 
-  let userData = {
+  const asset = createAssetHelper(base)
+
+  const userData = {
     email: 'username@account.com',
-    img: '/img/user/profile.jpg'
+    img: asset('/img/user/profile.jpg')
   }
 
   let notificationData = [

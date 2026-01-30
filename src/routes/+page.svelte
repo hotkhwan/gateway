@@ -1,5 +1,6 @@
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
+  import { m } from '$lib/i18n/messages'
   import { onMount, onDestroy } from 'svelte'
   import Icon from '@iconify/svelte'
   // @ts-ignore
@@ -50,7 +51,7 @@
         <span class="brand-img">
           <span class="brand-img-text text-theme">H</span>
         </span>
-        <span class="brand-text">HUD ADMIN</span>
+        <span class="brand-text">{m.landing_home()}</span>
       </span>
     </a>
     <div class="collapse navbar-collapse" id="navbarContent">
@@ -59,19 +60,19 @@
       >
         <div class="nav-item me-2">
           <a href="#home" aria-label="link" class="nav-link link-body-emphasis"
-            >Home</a
+            >{m.nav_home()}</a
           >
         </div>
         <div class="nav-item me-2">
           <a href="#about" aria-label="link" class="nav-link link-body-emphasis"
-            >About</a
+            >{m.nav_about()}</a
           >
         </div>
         <div class="nav-item me-2">
           <a
             href="#features"
             aria-label="link"
-            class="nav-link link-body-emphasis">Features</a
+            class="nav-link link-body-emphasis">{m.nav_features()}</a
           >
         </div>
         <!-- <div class="nav-item me-2">
@@ -92,7 +93,8 @@
       href="/dashboard"
       class="btn btn-outline-theme btn-sm fw-semibold text-uppercase px-2 py-1 fs-10px"
     >
-      Get started <i class="fa fa-arrow-right ms-1"></i>
+      {m.landing_get_started()} <i class="fa fa-arrow-right ms-1"></i>
+      <!-- Get started <i class="fa fa-arrow-right ms-1"></i> -->
     </a>
   </div>
 </div>

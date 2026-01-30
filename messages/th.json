@@ -1,0 +1,34 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "example_message": "สวัสดีชาวโลก {username}",
+
+  "_comments_app_get_started": "Used as a call-to-action button text to encourage users to begin using the application.",
+  "app_get_started": "เริ่มต้นใช้งาน",
+
+  "_comments_landing": "Landing page title",
+  "landing_home": "AISOM",
+  "landing_get_started": "เริ่มต้นใช้งาน",
+
+  "nav_home": "หน้าแรก",
+  "nav_about": "เกี่ยวกับเรา",
+  "nav_features": "ฟีเจอร์",
+
+  "hero_title": "สร้างขึ้นด้วย HUD Template",
+  "hero_description": "เข้าร่วมผู้ใช้นับพันทั่วโลกที่เลือกใช้ HUD Template เพื่อเริ่มต้นธุรกิจ พัฒนาโปรเจกต์ และสร้างสรรค์ผลงานได้อย่างรวดเร็ว",
+
+  "hero_discover": "ดูเทมเพลตของเรา",
+
+  "section_about_title": "เกี่ยวกับ HUD",
+  "section_about_desc": "HUD Template ถูกออกแบบมาเพื่อสร้างเว็บแอปประสิทธิภาพสูง สำหรับนักพัฒนา นักออกแบบ และผู้ประกอบการ",
+
+  "features_title": "ฟีเจอร์เด่นของเรา",
+  "features_desc": "สำรวจฟีเจอร์ที่โดดเด่นของ HUD Admin Template",
+
+  "pricing_title": "แผนราคา",
+  "pricing_desc": "เลือกแผนที่เหมาะสมกับธุรกิจของคุณ",
+
+  "contact_title": "ติดต่อเรา",
+  "contact_desc": "ติดต่อเราเพื่อพูดคุยและรับคำปรึกษาเกี่ยวกับโปรเจกต์ของคุณ",
+
+  "footer_about": "HUD คือโซลูชันสำหรับการสร้างเว็บแอปที่สวยงาม รวดเร็ว และมีประสิทธิภาพสูง"  
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "example_message": "Hello world {username}",
+
+  "_comments_app_get_started": "Used as a call-to-action button text to encourage users to begin using the application.",
+  "app_get_started": "Get Started",
+
+  "_comments_landing": "Landing page title",
+  "landing_home": "AISOM",
+  "landing_get_started": "Get Started",
+
+  "nav_home": "Home",
+  "nav_about": "About",
+  "nav_features": "Features",
+
+  "hero_title": "Built with HUD Template",
+  "hero_description": "Join thousands of users worldwide who rely on HUD Template to kickstart their startups, enhance company projects, hone creative skills, or tackle freelance tasks.",
+
+  "hero_discover": "Discover Our Template",
+
+  "section_about_title": "About HUD",
+  "section_about_desc": "HUD Template crafts high-performance web applications for developers, designers, and entrepreneurs, enabling effortless unleashing of creativity.",
+
+  "features_title": "Our Unique Features",
+  "features_desc": "Explore HUD Admin Template's standout features.",
+
+  "pricing_title": "Our Pricing Plans",
+  "pricing_desc": "Choose the perfect plan that suits your needs.",
+
+  "contact_title": "Get in Touch",
+  "contact_desc": "Contact us today to explore how our team can assist you.",
+
+  "footer_about": "HUD is your go-to solution for creating stunning, responsive, and high-performance web applications."
+}

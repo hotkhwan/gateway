@@ -1,1 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap');
+
+html {
+  font-family: 'Chakra Petch', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+}
+
+/* DEBUG: ถ้าไม่เห็น border แปลว่า CSS นี้ไม่ถูกโหลด */
+html {
+  outline: 5px solid red;
+}
+
+/* Thai locale tuning */
+html[lang='th'],
+html[lang='th'] body {
+  font-family: 'Noto Sans Thai', system-ui, sans-serif !important;
+  font-size: 22px !important;
+  line-height: 1.75 !important;
+}
